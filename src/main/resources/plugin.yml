@@ -1,0 +1,5 @@
+name: DWTestTask
+version: 1.0.0
+author: Meldren
+depend: [ProtocolLib, PacketWrapper]
+main: ru.meldren.dwtesttask.Manager
