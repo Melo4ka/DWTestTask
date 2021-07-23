@@ -1,0 +1,24 @@
+Summoner:
+  location:
+    world: 'world'
+    x: 0
+    y: 70
+    z: 0
+    yaw: 0.0
+    pitch: 0.0
+  name: '&c&lПризыватель'
+  cooldown: 6
+  health: 32.0
+  damage: 1.0
+Robber:
+  location:
+    world: 'world'
+    x: 0
+    y: 70
+    z: 0
+    yaw: 0.0
+    pitch: 0.0
+  name: '&4&lРазоритель'
+  cooldown: 20
+  health: 30.0
+  damage: 6.0

@@ -1,19 +1,24 @@
 package ru.meldren.dwtesttask;
 
+import lombok.AccessLevel;
 import lombok.Getter;
-import org.bukkit.Bukkit;
+import lombok.experimental.FieldDefaults;
 import org.bukkit.plugin.java.JavaPlugin;
-import ru.meldren.dwtesttask.utils.sql.MySQL;
+import ru.meldren.dwtesttask.commands.SpawnBossCommand;
+import ru.meldren.dwtesttask.entities.BossManager;
+import ru.meldren.dwtesttask.utils.PersonalHolo;
+import ru.meldren.dwtesttask.utils.sql.SQLite;
 
 /**
  * Created by Meldren on 22/06/2021
  */
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class Manager extends JavaPlugin {
 
-    private static Manager instance;
     @Getter
-    private final MySQL sql =
-            new MySQL("host", "database", "username", "password", 1);
+    static Manager instance;
+    @Getter
+    final SQLite sql = new SQLite("data.sqlite");
 
     @Override
     public void onEnable() {
@@ -21,20 +26,30 @@ public class Manager extends JavaPlugin {
 
         sql.connect();
         setUpTables();
-        Bukkit.getPluginManager().registerEvents(new Listeners(), this);
+        Localization.init();
+        registerCommands();
+        BossManager.clearEntities();
+        PersonalHolo.clearHolograms();
+        BossManager.init();
+        new Listeners();
+
+        System.out.println("DWTestTask has already enabled! Have a nice game :3");
     }
 
     @Override
     public void onDisable() {
         sql.disconnect();
+
+        System.out.println("DWTestTask has disabled! Bye :c");
     }
 
-    protected void setUpTables() {
-        sql.executeUpdate("CREATE TABLE IF NOT EXISTS ocelots " +
-                "(killerName TEXT, ocelotName TEXT, date TEXT) DEFAULT CHARSET=utf8");
+    private static void registerCommands() {
+        new SpawnBossCommand();
     }
 
-    public static Manager getInstance() {
-        return instance;
+    private void setUpTables() {
+        sql.executeSyncQuery("CREATE TABLE IF NOT EXISTS bosses " +
+                "(id TEXT, time TEXT, killers TEXT);");
     }
+
 }

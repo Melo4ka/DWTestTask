@@ -1,0 +1,8 @@
+SPAWN_BOSS_COMMAND_SUCCESS: '&aВы успешно призвали босса!'
+SPAWN_BOSS_COMMAND_ARGUMENTS: '&cСинтаксис: <Скрипт босса> <Название мира> <X> <Y> <Z>'
+BOSS_DEATH: '&cБосс %name% &cпобежден!'
+TOP_BOSS_DAMAGERS_HEADER: 'Топ игроков, нанесших наибольший урон:'
+TOP_BOSS_DAMAGERS: '%number%. %name% - %damage%'
+BOSS_HEALTH_INFO: '&fЗдоровье: §c%health%/%maxHealth%'
+BOSS_HOLOGRAM_GREETINGS: 'Привет, %name%.'
+BOSS_HOLOGRAM_COOLDOWN: '%name% &eпоявится через &b%time%&e.'
